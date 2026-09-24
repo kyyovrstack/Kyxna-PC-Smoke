@@ -3,226 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Лаунж-бар и Гейм-зона | Название заведения</title>
+    <title>Лаунж-бар: Кухня, Кальяны и Игры</title>
+    <!-- Подключаем шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131b2e;
-            --accent: #00ff88;
-            --accent-purple: #9d4edd;
-            --text: #ffffff;
-            --text-muted: #94a3b8;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text);
-            line-height: 1.6;
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            background-color: #0b0f19;
+            color: #fff;
         }
 
-        header {
-            background: linear-gradient(135deg, rgba(19,27,46,0.9), rgba(11,15,25,0.9)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=80') center/cover;
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--accent-purple);
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-
-        h1 span {
-            color: var(--accent);
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: #000;
-            padding: 12px 30px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
-        }
-
-        .btn:hover {
-            background: #00cc6a;
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
-        }
-
-        section {
-            padding: 60px 0;
+        /* Общие стили секций с плавным переходом фона */
+        .section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            transition: background 1s ease-in-out;
         }
 
         h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
             text-align: center;
-            font-size: 2rem;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.3s;
+        }
+
+        /* 1. ПЕРВИЧНАЯ СТРАНИЦА (Главная) */
+        #hero {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.2s;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            max-width: 600px;
             margin-bottom: 40px;
-            color: var(--accent-purple);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards 0.4s;
         }
 
-        .grid {
+        .scroll-down-hint {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.9rem;
+            color: #9ca3af;
+            animation: bounce 2s infinite;
+        }
+
+        /* 2. КУХНЯ (Теплый, аппетитный стиль) */
+        #kitchen {
+            background: linear-gradient(135deg, #2b130a 0%, #1a0a05 100%);
+        }
+        #kitchen h2 { color: #ff9f43; }
+
+        /* 3. КАЛЬЯННАЯ (Дымчатый, глубокий фиолетово-синий стиль) */
+        #hookah {
+            background: linear-gradient(135deg, #180e2b: 0%, #0c0614 100%);
+        }
+        #hookah h2 { color: #a55eea; }
+
+        /* 4. ИГРОВАЯ (Яркий киберпанковый неоновый стиль) */
+        #gaming {
+            background: linear-gradient(135deg, #051b11 0%, #020d08 100%);
+        }
+        #gaming h2 { color: #00ff88; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
+
+        /* Сетки карточек контента */
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            width: 100%;
         }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .item-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .item-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .item-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .item-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .item-content {
+            padding: 20px;
+        }
+
+        .item-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-price {
+            font-weight: 700;
+        }
+
+        .item-desc {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            line-height: 1.4;
+        }
+
+        /* Специфичный акцент для карточек кухни */
+        #kitchen .item-card:hover { box-shadow: 0 10px 30px rgba(255, 159, 67, 0.2); }
+        #kitchen .item-price { color: #ff9f43; }
+
+        /* Специфичный акцент для карточек кальянов */
+        #hookah .item-card:hover { box-shadow: 0 10px 30px rgba(165, 94, 234, 0.2); }
+        #hookah .item-price { color: #a55eea; }
+
+        /* Специфичный акцент для карточек игровой */
+        #gaming .item-card:hover { box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3); }
+        #gaming .item-price { color: #00ff88; }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Кнопка */
+        .btn-main {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(255, 126, 95, 0.4);
             transition: 0.3s;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-
-        .booking-form {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            max-width: 600px;
-            margin: 0 auto;
-            border: 1px solid var(--accent-purple);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            background: #0b0f19;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text);
-            border-radius: 6px;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #070a12;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 126, 95, 0.6);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>Игры, Кухня и Кальяны в <span>[Название]</span></h1>
-            <p class="subtitle">Топовое место для отдыха с друзьями: мощные ПК, PS5, дымные кальяны и вкусная еда.</p>
-            <a href="#booking" class="btn">Забронировать стол или ПК</a>
-        </div>
-    </header>
+    <!-- СЕКЦИЯ 1: ГЛАВНАЯ -->
+    <section id="hero" class="section">
+        <h1>Пространство нового формата 🍸🎮</h1>
+        <p>Сочная кухня, дымные кальяны, мощные ПК и PlayStation 5 в самом сердце города.</p>
+        <a href="#kitchen" class="btn-main">Исследовать меню и зоны</a>
+        <div class="scroll-down-hint">↓ Листните вниз</div>
+    </section>
 
-    <section class="container">
-        <h2>Наши зоны отдыха</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>🖥️ Киберзона (ПК)</h3>
-                <p>Мощные игровые ПК на базе топовых видеокарт, мониторы 240Гц, профессиональная периферия для максимального фпс и комфорта.</p>
+    <!-- СЕКЦИЯ 2: КУХНЯ -->
+    <section id="kitchen" class="section">
+        <h2>🍔 Авторская Кухня</h2>
+        <div class="cards-grid">
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Бургер">
+                <div class="item-content">
+                    <div class="item-title"><span>Фирменный Чикен-Бургер</span> <span class="item-price">550 ₽</span></div>
+                    <div class="item-desc">Сочная куриная котлета гриль, салат айсберг, фирменный соус чеддер, томаты, картофель пай.</div>
+                </div>
             </div>
-            <div class="card">
-                <h3>🎮 PlayStation 5</h3>
-                <p>Современные консоли, огромные 4K-телевизоры, удобные диваны и лучшие новинки игр для компании.</p>
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1555072956-7758afab20e8?auto=format&fit=crop&w=600&q=80" alt="Пицца">
+                <div class="item-content">
+                    <div class="item-title"><span>Пепперони острый</span> <span class="item-price">690 ₽</span></div>
+                    <div class="item-desc">Тонкое тесто, пикантная колбаса пепперони, двойная порция сыра моцарелла, фирменный томатный соус.</div>
+                </div>
             </div>
-            <div class="card">
-                <h3>💨 Кальяны и Кухня</h3>
-                <p>Широкая кальянная карта, авторские напитки, горячие бургеры, пицца и закуски для вашей компании.</p>
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Поке">
+                <div class="item-content">
+                    <div class="item-title"><span>Поке с лососем</span> <span class="item-price">720 ₽</span></div>
+                    <div class="item-desc">Свежий лосось слабой соли, рис басмати, авокадо, чука, бобы эдамаме, ореховый соус.</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="booking" class="container">
-        <h2>Онлайн-бронирование</h2>
-        <div class="booking-form">
-            <form onsubmit="sendToTelegram(event)">
-                <div class="form-group">
-                    <label>Ваше имя</label>
-                    <input type="text" id="name" required placeholder="Иван">
+    <!-- СЕКЦИЯ 3: КАЛЬЯННАЯ -->
+    <section id="hookah" class="section">
+        <h2>💨 Дымная Кальянная</h2>
+        <div class="cards-grid">
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=600&q=80" alt="Кальян классика">
+                <div class="item-content">
+                    <div class="item-title"><span>Классический микс</span> <span class="item-price">1200 ₽</span></div>
+                    <div class="item-desc">Легкие и средние табаки на выбор. Насыщенный вкус, густой дым, замена чаши по первому требованию.</div>
                 </div>
-                <div class="form-group">
-                    <label>Номер телефона</label>
-                    <input type="tel" id="phone" required placeholder="+7 (999) 000-00-00">
+            </div>
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80" alt="Премиум кальян">
+                <div class="item-content">
+                    <div class="item-title"><span>Премиум на фрукте</span> <span class="item-price">1700 ₽</span></div>
+                    <div class="item-desc">Подача на спелом грейпфруте или ананасе. Дополнительная сочность и мягкость вкуса до 1.5 часов курения.</div>
                 </div>
-                <div class="form-group">
-                    <label>Что бронируем?</label>
-                    <select id="zone">
-                        <option value="Столик в лаунж-зоне">Столик (Кальяны / Кухня)</option>
-                        <option value="PlayStation 5">PlayStation 5</option>
-                        <option value="Мощный ПК">Игровой ПК</option>
-                    </select>
+            </div>
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80" alt="Авторский микс">
+                <div class="item-content">
+                    <div class="item-title"><span>Авторский от мастера</span> <span class="item-price">1400 ₽</span></div>
+                    <div class="item-desc">Эксклюзивные чайные миксы или крепкие табаки с холодком, ягодами и пряными специями.</div>
                 </div>
-                <div class="form-group">
-                    <label>Дата и время</label>
-                    <input type="datetime-local" id="datetime" required>
-                </div>
-                <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
-            </form>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Заведение [Название]. Все права защищены.</p>
-    </footer>
+    <!-- СЕКЦИЯ 4: ИГРОВАЯ -->
+    <section id="gaming" class="section">
+        <h2>🎮 Игровая Зона (ПК & PS5)</h2>
+        <div class="cards-grid">
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80" alt="Мощный ПК">
+                <div class="item-content">
+                    <div class="item-title"><span>Мощные ПК (VIP)</span> <span class="item-price">от 150 ₽/час</span></div>
+                    <div class="item-desc">RTX 4070 Ti, Intel Core i7, мониторы 240Hz, девайсы Logitech Pro. Пакет 4 часа — 500 ₽.</div>
+                </div>
+            </div>
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80" alt="PlayStation 5">
+                <div class="item-content">
+                    <div class="item-title"><span>PlayStation 5 зона</span> <span class="item-price">от 300 ₽/час</span></div>
+                    <div class="item-desc">Большие 4K OLED телевизоры, удобные диваны, все топовые новинки FIFA, UFC, Mortal Kombat. Пакет 3 часа — 800 ₽.</div>
+                </div>
+            </div>
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" alt="Турниры">
+                <div class="item-content">
+                    <div class="item-title"><span>Турнирный пакет</span> <span class="item-price">1000 ₽</span></div>
+                    <div class="item-desc">Аренда консоли или ПК на вечер для компании друзей с возможностью заказать комбо-наборы еды.</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Скрипт для плавной анимации карточек при прокрутке -->
     <script>
-        function sendToTelegram(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const zone = document.getElementById('zone').value;
-            const datetime = document.getElementById('datetime').value;
+        const cards = document.querySelectorAll('.item-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
 
-            // Здесь в будущем можно подключить отправку в Telegram-бот
-            alert(`Спасибо, ${name}! Ваша заявка на бронь (${zone}) принята. Мы свяжемся с вами в ближайшее время по номеру ${phone}.`);
-        }
+        cards.forEach(card => {
+            observer.observe(card);
+        });
     </script>
-
 </body>
 </html>
