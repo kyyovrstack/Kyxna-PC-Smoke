@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кибер-Лаунж | Кухня, Кальяны, Игры</title>
-    <!-- Подключаем крутые современные шрифты -->
+    <title>NEXT LEVEL SPACE | Кибер-Лаунж</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,7 +26,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Общие правила для полноэкранных секций */
         .section {
             width: 100vw;
             height: 100vh;
@@ -46,10 +44,20 @@
             z-index: 2;
         }
 
-        /* АНИМАЦИИ СЕКЦИЙ И ФОНОВ */
+        /* ГЛАВНАЯ СТРАНИЦА: ФИОЛЕТОВЫЙ НЕОН + АНИМАЦИЯ ВХОДА */
         #hero {
-            background: radial-gradient(circle at center, #111b2e 0%, #05070b 100%);
+            background: radial-gradient(circle at center, #1e0b2e 0%, #05070b 100%);
             text-align: center;
+            opacity: 0;
+            transform: scale(0.95);
+            animation: fadeInSite 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInSite {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         #kitchen {
@@ -64,12 +72,11 @@
             background: radial-gradient(circle at center, #022617 0%, #010804 100%);
         }
 
-        /* ЗАГОЛОВКИ */
         .section-title {
             font-family: 'Syncopate', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 2px;
             opacity: 0;
@@ -82,48 +89,45 @@
             transform: translateY(0);
         }
 
-        /* СТИЛИ СЕКЦИЙ ПО УНИКАЛЬНЫМ ЦВЕТАМ */
         #hero h1 {
-            font-size: 4rem;
+            font-size: 3.8rem;
             font-weight: 800;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #00ff88, #00c6ff);
+            background: linear-gradient(90deg, #d946ef, #8b5cf6, #00ff88);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: pulseGlow 3s infinite alternate;
+            text-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+            animation: pulseNeon 3s infinite alternate;
         }
 
         #hero p {
             font-size: 1.2rem;
-            color: #94a3b8;
+            color: #cbd5e1;
             max-width: 600px;
             margin: 0 auto 40px auto;
         }
 
-        /* КАРТОЧКИ КОНТЕНТА (СЕТКА) */
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-height: 75vh;
+            overflow-y: auto;
+            padding-right: 5px;
         }
 
         @media (max-width: 900px) {
-            .grid-cards {
-                grid-template-columns: 1fr;
-                max-height: 70vh;
-                overflow-y: auto;
-            }
             .section { height: auto; min-height: 100vh; padding: 60px 20px; }
         }
 
         .card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             backdrop-filter: blur(10px);
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(40px);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -132,115 +136,112 @@
             transform: translateY(0);
         }
 
-        /* Задержки анимации карточек для каскадного появления */
-        .section.active .card:nth-child(1) { transition-delay: 0.2s; }
-        .section.active .card:nth-child(2) { transition-delay: 0.4s; }
-        .section.active .card:nth-child(3) { transition-delay: 0.6s; }
+        .section.active .card:nth-child(1) { transition-delay: 0.1s; }
+        .section.active .card:nth-child(2) { transition-delay: 0.2s; }
+        .section.active .card:nth-child(3) { transition-delay: 0.3s; }
+        .section.active .card:nth-child(4) { transition-delay: 0.4s; }
 
         .card img {
             width: 100%;
-            height: 180px;
+            height: 160px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
         .card:hover img {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
 
         .card-body {
-            padding: 20px;
+            padding: 15px;
         }
 
         .card-header-flex {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .card-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
         }
 
         .card-price {
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
-        /* Акценты под каждую зону */
+        /* Цветовые акценты */
         #kitchen .section-title { color: #ff9f43; text-shadow: 0 0 20px rgba(255,159,67,0.4); }
         #kitchen .card-price { color: #ff9f43; }
-        #kitchen .card:hover { border-color: rgba(255,159,67,0.5); box-shadow: 0 10px 30px rgba(255,159,67,0.15); }
+        #kitchen .card:hover { border-color: rgba(255,159,67,0.5); box-shadow: 0 10px 25px rgba(255,159,67,0.15); }
 
-        #hookah .section-title { color: #b538ff; text-shadow: 0 0 20px rgba(181,56,255,0.4); }
-        #hookah .card-price { color: #b538ff; }
-        #hookah .card:hover { border-color: rgba(181,56,255,0.5); box-shadow: 0 10px 30px rgba(181,56,255,0.15); }
+        #hookah .section-title { color: #c084fc; text-shadow: 0 0 20px rgba(192,132,252,0.4); }
+        #hookah .card-price { color: #c084fc; }
+        #hookah .card:hover { border-color: rgba(192,132,252,0.5); box-shadow: 0 10px 25px rgba(192,132,252,0.15); }
 
         #gaming .section-title { color: #00ff88; text-shadow: 0 0 25px rgba(0,255,136,0.6); }
         #gaming .card-price { color: #00ff88; }
-        #gaming .card:hover { border-color: rgba(0,255,136,0.5); box-shadow: 0 10px 30px rgba(0,255,136,0.2); }
+        #gaming .card:hover { border-color: rgba(0,255,136,0.5); box-shadow: 0 10px 25px rgba(0,255,136,0.2); }
 
         .card-desc {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: #94a3b8;
-            line-height: 1.5;
-            margin-top: 5px;
+            line-height: 1.4;
         }
 
         .card-subdesc {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #64748b;
-            margin-top: 8px;
+            margin-top: 6px;
             border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 6px;
+            padding-top: 5px;
         }
 
-        /* Кнопка */
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, #00ff88, #00c6ff);
-            color: #000;
+            background: linear-gradient(135deg, #c084fc, #9333ea);
+            color: #fff;
             padding: 14px 35px;
             border-radius: 35px;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 0 25px rgba(0,255,136,0.4);
+            box-shadow: 0 0 25px rgba(147, 51, 234, 0.6);
             transition: 0.3s;
         }
 
         .btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(0,255,136,0.7);
+            box-shadow: 0 0 35px rgba(192, 132, 252, 0.9);
         }
 
-        /* Указатель скролла */
         .scroll-indicator {
             position: absolute;
-            bottom: 25px;
-            font-size: 0.8rem;
+            bottom: 20px;
+            font-size: 0.75rem;
             letter-spacing: 2px;
-            color: #64748b;
+            color: #94a3b8;
             text-transform: uppercase;
             animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-            60% { transform: translateY(-4px); }
+            40% { transform: translateY(-6px); }
+            60% { transform: translateY(-3px); }
         }
 
-        @keyframes pulseGlow {
-            0% { filter: drop-shadow(0 0 10px rgba(0,255,136,0.2)); }
-            100% { filter: drop-shadow(0 0 25px rgba(0,255,136,0.6)); }
+        @keyframes pulseNeon {
+            0% { filter: drop-shadow(0 0 10px rgba(192,132,252,0.3)); }
+            100% { filter: drop-shadow(0 0 25px rgba(192,132,252,0.8)); }
         }
     </style>
 </head>
 <body>
 
-    <!-- СЕКЦИЯ 1: ГЛАВНАЯ -->
+    <!-- СЕКЦИЯ 1: ГЛАВНАЯ (ФИОЛЕТОВЫЙ НЕОН) -->
     <section id="hero" class="section active">
         <div class="container" style="text-align: center;">
             <h1>NEXT LEVEL SPACE</h1>
@@ -250,42 +251,65 @@
         <div class="scroll-indicator">Листните вниз ↓</div>
     </section>
 
-    <!-- СЕКЦИЯ 2: КУХНЯ -->
+    <!-- СЕКЦИЯ 2: КУХНЯ (Ваши ссылки на фото) -->
     <section id="kitchen" class="section">
         <div class="container">
             <h2 class="section-title">01. Кухня</h2>
             <div class="grid-cards">
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Бургер">
+                    <img src="https://i.imgur.com/6EYssq.jpeg" alt="Бургер">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">Тартар-Бургер VIP</span>
-                            <span class="card-price">620 ₽</span>
-                        </div>
-                        <div class="card-desc">Мраморная говядина, фирменный трюфельный соус, двойной чеддер, салат романо.</div>
-                        <div class="card-subdesc">Состав: булка бриошь, котлета 100% говядина, соус тартар, луковый мармелад.</div>
+                        <div class="card-header-flex"><span class="card-title">Фирменный Бургер</span><span class="card-price">550 ₽</span></div>
+                        <div class="card-desc">Сочная котлета из мраморной говядины, фирменный соус, свежие овощи.</div>
+                        <div class="card-subdesc">Состав: булка бриошь, говяжья котлета, сыр чеддер, томаты, айсберг.</div>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Пицца">
+                    <img src="https://i.imgur.com/LcW1x9p.jpeg" alt="Блюдо 2">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">Пепперони Spicy</span>
-                            <span class="card-price">740 ₽</span>
-                        </div>
-                        <div class="card-desc">Острая итальянская колбаса, перец халапеньо, моцарелла, фирменный томатный соус.</div>
-                        <div class="card-subdesc">Состав: мука высшего сорта, пепперони калабрийская, сыр моцарелла, базилик.</div>
+                        <div class="card-header-flex"><span class="card-title">Сытные Закуски</span><span class="card-price">480 ₽</span></div>
+                        <div class="card-desc">Хрустящие снеки к напиткам и играм для большой компании друзей.</div>
+                        <div class="card-subdesc">Состав: картофель фри, наггетсы, соус тар-тар, зелень.</div>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80" alt="Стрипсы">
+                    <img src="https://i.imgur.com/RBsggCJ.jpeg" alt="Блюдо 3">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">Куриные стрипсы фри</span>
-                            <span class="card-price">450 ₽</span>
-                        </div>
-                        <div class="card-desc">Хрустящие кусочки филе в панировке с фирменным соусом барбекю и зеленью.</div>
-                        <div class="card-subdesc">Состав: куриное филе, панировочные сухари порко, специи, соус BBQ.</div>
+                        <div class="card-header-flex"><span class="card-title">Горячее блюдо</span><span class="card-price">690 ₽</span></div>
+                        <div class="card-desc">Авторское исполнение от шеф-повара специально для нашего пространства.</div>
+                        <div class="card-subdesc">Состав: свежие ингредиенты, специи премиум-класса, соус.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/MIUQWNX.jpeg" alt="Блюдо 4">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Пицца Пепперони</span><span class="card-price">720 ₽</span></div>
+                        <div class="card-desc">Тонкое тесто, пикантная колбаска, много сыра моцарелла.</div>
+                        <div class="card-subdesc">Состав: мука, томатный соус, пепперони, сыр, базилик.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/vPGBgUH.jpeg" alt="Блюдо 5">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Комбо набор</span><span class="card-price">890 ₽</span></div>
+                        <div class="card-desc">Сбалансированный набор для перерыва во время долгой катки.</div>
+                        <div class="card-subdesc">Состав: ассорти закусок, соусы, напиток на выбор.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/3wfMGYj.jpeg" alt="Блюдо 6">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Фирменный Сэндвич</span><span class="card-price">420 ₽</span></div>
+                        <div class="card-desc">Горячий и сытный перекус с хрустящей корочкой.</div>
+                        <div class="card-subdesc">Состав: тостовый хлеб, куриное филе, соус, салат.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/WcwKdrN.jpeg" alt="Блюдо 7">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Десерт / Напиток</span><span class="card-price">350 ₽</span></div>
+                        <div class="card-desc">Освежающие авторские лимонады или сладкое дополнение.</div>
+                        <div class="card-subdesc">Состав: натуральные фрукты, сиропы, лед, газировка.</div>
                     </div>
                 </div>
             </div>
@@ -293,42 +317,49 @@
         <div class="scroll-indicator">Кальянная зона ↓</div>
     </section>
 
-    <!-- СЕКЦИЯ 3: КАЛЬЯННАЯ -->
+    <!-- СЕКЦИЯ 3: КАЛЬЯННАЯ (Ваши ссылки на фото) -->
     <section id="hookah" class="section">
         <div class="container">
             <h2 class="section-title">02. Кальянная</h2>
             <div class="grid-cards">
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=600&q=80" alt="Классический кальян">
+                    <img src="https://i.imgur.com/u6x92sE.jpeg" alt="Кальян 1">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">Классика / Легкий</span>
-                            <span class="card-price">1100 ₽</span>
-                        </div>
-                        <div class="card-desc">Мягкие ягодные и фруктовые миксы. Оптимально для расслабленного вечера в компании.</div>
-                        <div class="card-subdesc">Вкусы: лесная земляника, спелый персик, свежая мята, цитрусовый микс.</div>
+                        <div class="card-header-flex"><span class="card-title">Классический кальян</span><span class="card-price">1100 ₽</span></div>
+                        <div class="card-desc">Легкие и ароматные табаки для расслабленного отдыха.</div>
+                        <div class="card-subdesc">Вкусы: спелый персик, лесные ягоды, мята.</div>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80" alt="Кальян на фрукте">
+                    <img src="https://i.imgur.com/8KfNujL.jpeg" alt="Кальян 2">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">На спелом Грейпфруте</span>
-                            <span class="card-price">1650 ₽</span>
-                        </div>
-                        <div class="card-desc">Натуральная чаша из фрукта дает дополнительную сочность и мягкость дыма до 2 часов.</div>
-                        <div class="card-subdesc">Вкусы: тропический коктейль, кислый цитрус, арбуз с холодом.</div>
+                        <div class="card-header-flex"><span class="card-title">Премиум на фрукте</span><span class="card-price">1650 ₽</span></div>
+                        <div class="card-desc">Подача на спелом грейпфруте для максимальной сочности.</div>
+                        <div class="card-subdesc">Вкусы: тропический микс, цитрус, лед.</div>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80" alt="Премиум кальян">
+                    <img src="https://i.imgur.com/ouv5aZn.jpeg" alt="Кальян 3">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">Авторский Darkside</span>
-                            <span class="card-price">1450 ₽</span>
-                        </div>
-                        <div class="card-desc">Крепкие насыщенные миксы с глубоким вкусом и густым дымом для ценителей.</div>
-                        <div class="card-subdesc">Вкусы: пряные специи, темный шоколад, табачный лист, кола-лайм.</div>
+                        <div class="card-header-flex"><span class="card-title">Авторский микс</span><span class="card-price">1400 ₽</span></div>
+                        <div class="card-desc">Эксклюзивные забивки от топовых мастеров кальянного дела.</div>
+                        <div class="card-subdesc">Вкусы: пряности, десертные нотки, чайные миксы.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/EvNN0V9.jpeg" alt="Кальян 4">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Крепкий Darkside</span><span class="card-price">1450 ₽</span></div>
+                        <div class="card-desc">Насыщенный вкус и густой дым для любителей покрепче.</div>
+                        <div class="card-subdesc">Вкусы: темный лист, пряные специи, кола.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/eXzMXMi.jpeg" alt="Кальян 5">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Дымный сет</span><span class="card-price">1900 ₽</span></div>
+                        <div class="card-desc">Специальное предложение с дополнительной заменой чаши.</div>
+                        <div class="card-subdesc">Вкусы: индивидуальный подбор под ваши предпочтения.</div>
                     </div>
                 </div>
             </div>
@@ -336,57 +367,82 @@
         <div class="scroll-indicator">Игровая зона ↓</div>
     </section>
 
-    <!-- СЕКЦИЯ 4: ИГРОВАЯ -->
+    <!-- СЕКЦИЯ 4: ИГРОВАЯ (ПК и PS5 с вашими фото) -->
     <section id="gaming" class="section">
         <div class="container">
-            <h2 class="section-title">03. Игровая Зона</h2>
+            <h2 class="section-title">03. Игровая Зона (ПК & PS5)</h2>
             <div class="grid-cards">
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80" alt="Мощный ПК">
+                    <img src="https://i.imgur.com/lo9RAK3.jpeg" alt="PS5 1">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">VIP Компьютеры (RTX)</span>
-                            <span class="card-price">от 180 ₽/час</span>
-                        </div>
-                        <div class="card-desc">Топовые сборки с видеокартами RTX 4070, мониторы 240Hz, механика и наушники HyperX.</div>
-                        <div class="card-subdesc">Пакеты: 3 часа — 500 ₽ | Ночной пакет (22:00–08:00) — 990 ₽.</div>
+                        <div class="card-header-flex"><span class="card-title">PlayStation 5 (Зал)</span><span class="card-price">от 350 ₽/час</span></div>
+                        <div class="card-desc">Современные консоли и огромные 4K экраны для компаний.</div>
+                        <div class="card-subdesc">Пакет 3 часа — 900 ₽ | FIFA 26, UFC 5, Mortal Kombat 1.</div>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80" alt="PlayStation 5">
+                    <img src="https://i.imgur.com/UKRhEI3.jpeg" alt="PS5 2">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">PlayStation 5 Lounge</span>
-                            <span class="card-price">от 350 ₽/час</span>
-                        </div>
-                        <div class="card-desc">Огромные 4K OLED экраны, мягкие угловые диваны на компании до 5 человек.</div>
-                        <div class="card-subdesc">Пакеты: 3 часа — 900 ₽ | Все новинки FIFA 26, UFC 5, Mortal Kombat 1.</div>
+                        <div class="card-header-flex"><span class="card-title">PlayStation 5 (VIP Диваны)</span><span class="card-price">от 450 ₽/час</span></div>
+                        <div class="card-desc">Уютная зона с мягкими диванами и максимальным комфортом.</div>
+                        <div class="card-subdesc">Пакет 4 часа — 1300 ₽ | Полный доступ ко всем новинкам игр.</div>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" alt="Турниры">
+                    <img src="https://i.imgur.com/0bK4Alh.jpeg" alt="PS5 3">
                     <div class="card-body">
-                        <div class="card-header-flex">
-                            <span class="card-title">Командный Турнир</span>
-                            <span class="card-price">1200 ₽</span>
-                        </div>
-                        <div class="card-desc">Аренда изолированной зоны с консолями или ПК под закрытое мероприятие или батл.</div>
-                        <div class="card-subdesc">В стоимость входит обслуживание кальянщика и скидка 15% на меню кухни.</div>
+                        <div class="card-header-flex"><span class="card-title">Турнирная зона PS5</span><span class="card-price">1200 ₽</span></div>
+                        <div class="card-desc">Аренда консоли под вечерние батлы с друзьями.</div>
+                        <div class="card-subdesc">Пакет на вечер + скидка на кальян и меню кухни.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/VuY3kIS.jpeg" alt="PS5 4">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Командный батл PS5</span><span class="card-price">1500 ₽</span></div>
+                        <div class="card-desc">Закрытая игра на нескольких консолях одновременно.</div>
+                        <div class="card-subdesc">Специальные условия для проведения турниров.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/y8ubaJA.jpeg" alt="ПК 1">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Мощные ПК (Standard)</span><span class="card-price">от 180 ₽/час</span></div>
+                        <div class="card-desc">Мощные видеокарты, быстрые мониторы 240Hz, топовая периферия.</div>
+                        <div class="card-subdesc">Пакет 3 часа — 500 ₽ | CS2, Dota 2, Cyberpunk.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/pbejZPq.jpeg" alt="ПК 2">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Мощные ПК (VIP)</span><span class="card-price">от 250 ₽/час</span></div>
+                        <div class="card-desc">Максимальный FPS, профессиональные девайсы HyperX и Logitech.</div>
+                        <div class="card-subdesc">Ночной пакет (22:00–08:00) — 990 ₽.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/mzaxtbX.jpeg" alt="ПК 3">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Киберспортивный зал</span><span class="card-price">300 ₽/час</span></div>
+                        <div class="card-desc">Зона для тренировок киберспортивных команд и сквадов.</div>
+                        <div class="card-subdesc">Синхронизированные ПК, выделенный интернет.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i.imgur.com/GOPpMbf.jpeg" alt="ПК 4">
+                    <div class="card-body">
+                        <div class="card-header-flex"><span class="card-title">Ночной безлимит ПК</span><span class="card-price">990 ₽</span></div>
+                        <div class="card-desc">Играй всю ночь напролет с максимальной выгодой.</div>
+                        <div class="card-subdesc">Действует с 22:00 до 08:00 утра на всех ПК зонах.</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Скрипт для отслеживания активных секций и запуска анимации при скролле -->
     <script>
         const sections = document.querySelectorAll('.section');
-
-        const observerOptions = {
-            root: null,
-            threshold: 0.5 // Секция активируется, когда она наполовину на экране
-        };
-
+        const observerOptions = { root: null, threshold: 0.5 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -396,9 +452,7 @@
             });
         }, observerOptions);
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+        sections.forEach(section => { observer.observe(section); });
     </script>
 </body>
 </html>
