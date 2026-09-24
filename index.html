@@ -44,7 +44,7 @@
             z-index: 2;
         }
 
-        /* ГЛАВНАЯ СТРАНИЦА: ФИОЛЕТОВЫЙ НЕОН + АНИМАЦИЯ ВХОДА */
+        /* ГЛАВНАЯ СТРАНИЦА: ФИОЛЕТОВЫЙ НЕОН + АНИМАЦИЯ */
         #hero {
             background: radial-gradient(circle at center, #1e0b2e 0%, #05070b 100%);
             text-align: center;
@@ -72,6 +72,14 @@
             background: radial-gradient(circle at center, #022617 0%, #010804 100%);
         }
 
+        /* СЕКЦИЯ БРОНИРОВАНИЯ В КОНЦЕ */
+        #booking {
+            background: radial-gradient(circle at center, #230836 0%, #05070b 100%);
+            height: auto;
+            min-height: 100vh;
+            padding: 80px 20px;
+        }
+
         .section-title {
             font-family: 'Syncopate', sans-serif;
             font-size: 2.2rem;
@@ -87,6 +95,24 @@
         .section.active .section-title {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* НЕОНОВАЯ НАДПИСЬ НАВЕРХУ */
+        .neon-top-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #c084fc;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(192, 132, 252, 0.8), 0 0 30px rgba(139, 92, 246, 0.6);
+            animation: neonGlow 2s infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            0% { text-shadow: 0 0 10px rgba(192, 132, 252, 0.5), 0 0 20px rgba(139, 92, 246, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(192, 132, 252, 0.9), 0 0 40px rgba(147, 51, 234, 0.8); }
         }
 
         #hero h1 {
@@ -200,6 +226,46 @@
             padding-top: 5px;
         }
 
+        /* ФОРМА БРОНИРОВАНИЯ */
+        .booking-form-box {
+            background: rgba(15, 12, 25, 0.8);
+            border: 2px solid #c084fc;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(192, 132, 252, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: #05070b;
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #c084fc;
+            box-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+        }
+
         .btn {
             display: inline-block;
             background: linear-gradient(135deg, #c084fc, #9333ea);
@@ -210,10 +276,14 @@
             text-decoration: none;
             box-shadow: 0 0 25px rgba(147, 51, 234, 0.6);
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
         }
 
         .btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
             box-shadow: 0 0 35px rgba(192, 132, 252, 0.9);
         }
 
@@ -241,17 +311,18 @@
 </head>
 <body>
 
-    <!-- СЕКЦИЯ 1: ГЛАВНАЯ (ФИОЛЕТОВЫЙ НЕОН) -->
+    <!-- СЕКЦИЯ 1: ГЛАВНАЯ (ФИОЛЕТОВЫЙ НЕОН + НАДПИСЬ) -->
     <section id="hero" class="section active">
         <div class="container" style="text-align: center;">
+            <div class="neon-top-title">Кальянная Игра</div>
             <h1>NEXT LEVEL SPACE</h1>
             <p>Премиальная кухня, густые кальяны и киберпространство нового поколения под одной крышей.</p>
-            <a href="#kitchen" class="btn">Погрузиться в атмосферу</a>
+            <a href="#kitchen" class="btn" style="width: auto;">Погрузиться в атмосферу</a>
         </div>
         <div class="scroll-indicator">Листните вниз ↓</div>
     </section>
 
-    <!-- СЕКЦИЯ 2: КУХНЯ (Ваши ссылки на фото) -->
+    <!-- СЕКЦИЯ 2: КУХНЯ -->
     <section id="kitchen" class="section">
         <div class="container">
             <h2 class="section-title">01. Кухня</h2>
@@ -317,7 +388,7 @@
         <div class="scroll-indicator">Кальянная зона ↓</div>
     </section>
 
-    <!-- СЕКЦИЯ 3: КАЛЬЯННАЯ (Ваши ссылки на фото) -->
+    <!-- СЕКЦИЯ 3: КАЛЬЯННАЯ -->
     <section id="hookah" class="section">
         <div class="container">
             <h2 class="section-title">02. Кальянная</h2>
@@ -367,17 +438,17 @@
         <div class="scroll-indicator">Игровая зона ↓</div>
     </section>
 
-    <!-- СЕКЦИЯ 4: ИГРОВАЯ (ПК и PS5 с вашими фото) -->
+    <!-- СЕКЦИЯ 4: ИГРОВАЯ -->
     <section id="gaming" class="section">
         <div class="container">
-            <h2 class="section-title">03. Игровая Зона (ПК & PS5)</h2>
+            <h2 class="section-title">03. Игровая Зона</h2>
             <div class="grid-cards">
                 <div class="card">
                     <img src="https://i.imgur.com/lo9RAK3.jpeg" alt="PS5 1">
                     <div class="card-body">
                         <div class="card-header-flex"><span class="card-title">PlayStation 5 (Зал)</span><span class="card-price">от 350 ₽/час</span></div>
                         <div class="card-desc">Современные консоли и огромные 4K экраны для компаний.</div>
-                        <div class="card-subdesc">Пакет 3 часа — 900 ₽ | FIFA 26, UFC 5, Mortal Kombat 1.</div>
+                        <div class="card-subdesc">Пакет 3 часа — 900 ₽ | FIFA, UFC, Mortal Kombat.</div>
                     </div>
                 </div>
                 <div class="card">
@@ -438,6 +509,39 @@
                 </div>
             </div>
         </div>
+        <div class="scroll-indicator" style="color: #00ff88;">Окошко брони ↓</div>
+    </section>
+
+    <!-- СЕКЦИЯ 5: ОКОШКО ДЛЯ ЗАПИСИ (БРОНИРОВАНИЕ) -->
+    <section id="booking" class="section">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title" style="color: #c084fc;">Онлайн-Запись</h2>
+            <div class="booking-form-box">
+                <form onsubmit="handleBooking(event)">
+                    <div class="form-group">
+                        <label>Номер телефона</label>
+                        <input type="tel" id="clientPhone" required placeholder="+7 (999) 000-00-00">
+                    </div>
+                    <div class="form-group">
+                        <label>Желаемое время и дата</label>
+                        <input type="datetime-local" id="clientTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Сколько гостей?</label>
+                        <input type="number" id="clientGuests" min="1" max="20" value="2" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Что желаете забронировать?</label>
+                        <select id="clientZone">
+                            <option value="Мощный ПК">Мощный ПК</option>
+                            <option value="PlayStation 5">PlayStation 5</option>
+                            <option value="Кальянная зона / Столик">Кальянная зона / Столик</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
     </section>
 
     <script>
@@ -453,6 +557,13 @@
         }, observerOptions);
 
         sections.forEach(section => { observer.observe(section); });
+
+        // Обработка отправки формы
+        function handleBooking(event) {
+            event.preventDefault();
+            alert("Заявка успешно отправилась)\nЖдем вас :)");
+            event.target.reset();
+        }
     </script>
 </body>
 </html>
